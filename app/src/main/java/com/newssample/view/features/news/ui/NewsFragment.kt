@@ -1,6 +1,7 @@
 package com.newssample.view.features.news.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,22 +70,24 @@ class NewsFragment : BaseFragment() {
     private fun initializeView() {
         binding.newsList.layoutManager = LinearLayoutManager(requireContext())
         binding.newsList.adapter = newsAdapter
-        newsAdapter.clickListener = { news, navigationExtras ->
-            navigator.showNewsDetails(requireActivity(), news, navigationExtras)
+        newsAdapter.clickListener = { news ->
+            navigator.showNewsDetails(requireActivity(), news)
         }
     }
 
     private fun loadNewsList() {
+
         binding.emptyView.invisible()
         binding.newsList.visible()
-        //showProgress()
+        showProgress()
         newsViewModel.getPopularNews("tesla",Urls.API_KEY,10)
     }
 
     private fun renderNewsList(newsData: PopularNews?) {
+        hideProgress()
         val newsList = newsData!!.popularArticles
         newsAdapter.collection = newsList.orEmpty()
-        // hideProgress()
+
     }
 
     private fun handleFailure(failure: Failure?) {
@@ -99,7 +102,7 @@ class NewsFragment : BaseFragment() {
     private fun renderFailure(@StringRes message: Int) {
         binding.newsList.invisible()
         binding.emptyView.visible()
-        //hideProgress()
+        hideProgress()
         notifyWithAction(message, R.string.action_refresh, ::loadNewsList)
     }
 

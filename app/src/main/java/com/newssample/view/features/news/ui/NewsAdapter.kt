@@ -21,7 +21,7 @@ class NewsAdapter
         notifyDataSetChanged()
     }
 
-    internal var clickListener: (PopularArticle, Navigator.Extras) -> Unit = { _, _ -> }
+    internal var clickListener: (PopularArticle) -> Unit = { _, -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(parent.inflate(R.layout.news_item))
@@ -32,7 +32,7 @@ class NewsAdapter
     override fun getItemCount() = collection.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(article: PopularArticle, clickListener: (PopularArticle, Navigator.Extras) -> Unit) {
+        fun bind(article: PopularArticle, clickListener: (PopularArticle) -> Unit) {
 
             val itemImage: ImageView = itemView.findViewById(R.id.itemImage)
             val titleText: TextView = itemView.findViewById(R.id.titleLabel)
@@ -47,8 +47,7 @@ class NewsAdapter
             dateText.text = Utility.formatDate(article.publishedAt.toString())
             itemView.setOnClickListener {
                 clickListener(
-                    article,
-                    Navigator.Extras(itemImage))
+                    article)
 
             }
         }

@@ -30,7 +30,6 @@
         </activity>
 
 
-
         <activity
             android:name=".features.news.ui.NewsActivity"
             android:label="News List">

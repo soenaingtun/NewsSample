@@ -74,13 +74,7 @@ class NewsDetailsFragment : BaseFragment() {
         }
     }
 
-    override fun onBackPressed() {
- //       movieDetailsAnimator.fadeInvisible(binding.scrollView, binding.movieDetails)
-//        if (binding.moviePlay.isVisible())
-//            movieDetailsAnimator.scaleDownView(binding.moviePlay)
-//        else
-//            movieDetailsAnimator.cancelTransition(binding.moviePoster)
-    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

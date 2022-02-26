@@ -9,6 +9,5 @@ class NewsActivity : BaseActivity() {
     companion object {
         fun callingIntent(context: Context) = Intent(context, NewsActivity::class.java)
     }
-
     override fun fragment() = NewsFragment()
 }

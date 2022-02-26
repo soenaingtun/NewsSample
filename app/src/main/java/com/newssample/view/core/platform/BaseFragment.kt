@@ -15,10 +15,8 @@
  */
 package com.newssample.view.core.platform
 
+import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -26,7 +24,7 @@ import com.newssample.view.R.color
 import com.newssample.view.core.extension.appContext
 import com.newssample.view.core.extension.viewContainer
 import com.google.android.material.snackbar.Snackbar
-import com.newssample.view.databinding.ActivityLayoutBinding
+import com.newssample.view.features.news.util.Utility
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -37,31 +35,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 abstract class BaseFragment : Fragment() {
 
-    //abstract fun layoutId(): Int
-    private var _binding: ActivityLayoutBinding? = null
-    private val binding get() = _binding!!
+    lateinit var loadingDialog : Dialog
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = ActivityLayoutBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        loadingDialog = Utility.createLoadingDialog(requireContext())
+
     }
 
 
     open fun onBackPressed() {}
 
-    internal fun firstTimeCreated(savedInstanceState: Bundle?) = savedInstanceState == null
+    internal fun showProgress() =  loadingDialog.show()
 
-    internal fun showProgress() = progressStatus(View.VISIBLE)
-
-    internal fun hideProgress() = progressStatus(View.GONE)
-
-    private fun progressStatus(viewStatus: Int) =
-        with(activity) { if (this is BaseActivity) binding.progress.visibility = viewStatus }
+    internal fun hideProgress() = loadingDialog.dismiss()
 
     internal fun notify(@StringRes message: Int) =
         Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
