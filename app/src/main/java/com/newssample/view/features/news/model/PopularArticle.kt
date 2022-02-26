@@ -11,7 +11,6 @@ data class PopularArticle(val id: Int,
                           val content: String?,
                           val description: String?,
                           val publishedAt: String?,
-                         // val source: Source?,
                           val title: String?,
                           val urlToImage: String?): KParcelable {
     companion object {
@@ -35,6 +34,7 @@ data class PopularArticle(val id: Int,
             writeInt(id)
             writeString(url)
             writeString(author)
+            writeString(content)
             writeString(description)
             writeString(publishedAt)
             writeString(title)
