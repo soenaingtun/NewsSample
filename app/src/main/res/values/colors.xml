@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F91313</color>
+    <color name="colorPrimaryDark">#F91E1E</color>
+    <color name="colorAccent">#D85757</color>
+
+    <color name="logobg">#1F485E</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="nav_bg">#605F5F</color>
+    <color name="payment_bg">#DBE83D</color>
+    <color name="background">#9155f8</color>
+    <color name="selected_gray">#ffdbdbdb</color>
+    <color name="gray">#808080</color>
+    <color name="light_gray">#D9D9D9</color>
+    <color name="transparent_white">#80FFFFFF</color>
+
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextSecondary">#7f1a18</color>
+
+    <color name="translucentBackground">#ED000000</color>
+</resources>
